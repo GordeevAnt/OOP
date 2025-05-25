@@ -1,0 +1,85 @@
+/* SameRecipesList.module.css */
+
+.sameRecipesContainer {
+    margin-top: 18px; /* уменьшено на 10% (было 20px) */
+}
+  
+.sameRecipesTitle {
+    color: #333;
+    font-size: 1.26rem; /* уменьшено на 10% (было 1.4rem) */
+    margin-bottom: 13.5px; /* уменьшено на 10% (было 15px) */
+}
+  
+.sameRecipesList {
+    display: flex;
+    gap: 35px; /* уменьшено на 10% (было 20px) */
+    overflow-x: auto;
+    padding-bottom: 13.5px; /* уменьшено на 10% (было 15px) */
+    scrollbar-width: thin;
+    scrollbar-color: #ddd transparent;
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+  
+.sameRecipesList::-webkit-scrollbar {
+    height: 5.4px; /* уменьшено на 10% (было 6px) */
+}
+  
+.sameRecipesList::-webkit-scrollbar-thumb {
+    border-radius: 2.7px; /* уменьшено на 10% (было 3px) */
+}
+  
+.sameRecipeItem {
+    flex: 0 0 auto;
+    width: 216px; /* уменьшено на 10% (было 240px) */
+    box-shadow: 0 1.8px 7.2px rgba(0, 0, 0, 0.1); /* уменьшено на 10% */
+    border-radius: 7.2px; /* уменьшено на 10% (было 8px) */
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+  
+.sameRecipeItem:hover {
+    transform: translateY(-3.6px); /* уменьшено на 10% (было -4px) */
+    box-shadow: 0 3.6px 10.8px rgba(0, 0, 0, 0.15); /* уменьшено на 10% */
+}
+
+/* Стили для уменьшенной версии RecipeCard */
+.sameRecipeItem .card {
+    width: 100%;
+    height: auto;
+    min-height: 135px; /* уменьшено на 10% (было 150px) */
+    padding: 13.5px; /* уменьшено на 10% (было 15px) */
+    border-radius: 7.2px; /* уменьшено на 10% (было 8px) */
+}
+  
+.sameRecipeItem .small-image {
+    height: 108px; /* уменьшено на 10% (было 120px) */
+    margin-bottom: 10.8px; /* уменьшено на 10% (было 12px) */
+    border-radius: 3.6px; /* уменьшено на 10% (было 4px) */
+}
+  
+.sameRecipeItem .title {
+    font-size: 1.08rem; /* уменьшено на 10% (было 1.2rem) */
+    margin-bottom: 7.2px; /* уменьшено на 10% (было 8px) */
+}
+  
+.sameRecipeItem .category,
+.sameRecipeItem .eatingTime {
+    font-size: 0.765rem; /* уменьшено на 10% (было 0.85rem) */
+    margin-bottom: 5.4px; /* уменьшено на 10% (было 6px) */
+}
+  
+.sameRecipeItem .ingredientsTitle {
+    font-size: 0.9rem; /* уменьшено на 10% (было 1rem) */
+    margin-bottom: 5.4px; /* уменьшено на 10% (было 6px) */
+}
+  
+.sameRecipeItem .ingredientsList {
+    max-height: 90px; /* уменьшено на 10% (было 100px) */
+    font-size: 0.765rem; /* уменьшено на 10% (было 0.85rem) */
+    padding-left: 13.5px; /* уменьшено на 10% (было 15px) */
+}
+  
+.sameRecipeItem .ingredientItem {
+    margin-bottom: 2.7px; /* уменьшено на 10% (было 3px) */
+}

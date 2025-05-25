@@ -1,0 +1,28 @@
+.home-icon-button {
+  display: inline-block;
+  margin-right: 15px; /* Отступ от других элементов */
+}
+
+.home-icon {
+  color: #333; /* Цвет иконки */
+  font-size: 32px; /* Размер иконки */
+  transition: all 0.3s ease;
+  padding: 8px;
+  border-radius: 4px;
+  background-color: white; /* Белый фон как у других элементов */
+  text-decoration: none; /* Убрать подчеркивание */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-icon:hover {
+  color: orange; /* Цвет при наведении */
+  transform: scale(1.1); /* Увеличение при наведении */
+  outline: 2px solid orange; /* Обводка как у других элементов */
+}
+
+.home-icon:active {
+  background-color: orange; /* Фон при нажатии */
+  color: white; /* Цвет иконки при нажатии */
+}

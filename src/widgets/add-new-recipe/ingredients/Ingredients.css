@@ -1,0 +1,177 @@
+/* Основные стили контейнера */
+.ingredients-container {
+    margin: 0 auto;
+    margin-bottom: 40px;
+    width: 100%;
+    max-width: 800px;
+}
+
+.ingredients-select {
+    flex: 1;
+    margin-right: 10px;
+}
+
+/* Общие стили для react-select */
+.ingredients-select .react-select__control {
+    min-height: 38px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.ingredients-select .react-select__menu {
+    z-index: 100;
+}
+
+/* Стили метки */
+.ingredients-label {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 20px;
+    color: #333;
+    font-weight: 500;
+}
+
+/* Группа ввода ингредиента */
+.ingredients-input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+/* Кнопка добавления */
+.ingredients-add-button {
+    width: 40px;
+    background-color: white;
+    color: #333;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.ingredients-add-button:hover {
+    border-color: orange;
+    color: orange;
+}
+
+.ingredients-add-button:active {
+    background-color: orange;
+    color: white;
+}
+
+/* Список ингредиентов */
+.ingredients-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Элемент списка */
+.ingredients-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #f0f0f0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.ingredients-text {
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+/* Блок управления количеством */
+.ingredients-count-controls {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Поле ввода количества */
+.ingredients-count-input {
+    width: 50px;
+    padding: 6px 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 20px;
+    font-size: 14px;
+    text-align: center;
+    outline: none;
+    transition: all 0.2s ease;
+    -moz-appearance: textfield;
+    background-color: #f9f9f9;
+}
+
+.ingredients-count-input::-webkit-outer-spin-button,
+.ingredients-count-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.ingredients-count-input:focus {
+    border-color: orange;
+    box-shadow: 0 0 0 2px rgba(255, 165, 0, 0.2);
+}
+
+/* Кнопки изменения количества */
+.ingredients-count-btn {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #e0e0e0;
+    border-radius: 50%;
+    background-color: white;
+    color: #333;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.ingredients-count-btn:hover {
+    background-color: #f5f5f5;
+}
+
+.ingredients-count-btn:active {
+    background-color: #e0e0e0;
+}
+
+/* Кнопка удаления */
+.ingredients-remove-button {
+    width: 28px;
+    height: 28px;
+    margin-left: 10px;
+    background-color: white;
+    color: #ff6b6b;
+    border: 1px solid #ff6b6b;
+    border-radius: 50%;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ingredients-remove-button:hover {
+    background-color: #ff6b6b;
+    color: white;
+}
+
+.ingredients-unit-select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 0 10px;
+    background-color: white;
+}

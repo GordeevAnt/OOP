@@ -1,0 +1,18 @@
+.button-link {
+    display: block; /* или flex, в зависимости от контекста */
+    width: 90%;
+    margin: 0 auto; /* это центрирует кнопку */
+    padding: 10px 20px; /* добавьте отступы для лучшего вида */
+    background-color: rgb(226, 226, 226);
+    color: black;
+    text-align: center; /* центрирует текст внутри кнопки */
+    text-decoration: none; /* убирает подчеркивание для ссылок */
+    border: none;
+    border-radius: 20px; /* закругленные края, значение можно менять */
+    transition: background-color 0.3s ease; /* плавное изменение цвета */
+}
+
+.button-link:hover {
+    background-color: orange;
+    color: white;
+}

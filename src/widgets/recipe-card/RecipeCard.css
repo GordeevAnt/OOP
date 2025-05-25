@@ -1,0 +1,73 @@
+.card {
+  position: relative;
+  background-color: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  width: 300px;
+  height: 430px;
+}
+
+.card-content {
+  height: 100%;
+  transition: filter 0.3s ease;
+}
+
+.card-content--blurred {
+  filter: blur(4px);
+  opacity: 0.7;
+}
+
+.button-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.title {
+  margin: 0 0 12px 0;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.category, .eatingTime {
+  color: #666;
+  margin: 0 0 8px 0;
+}
+
+.ingredientsTitle {
+  color: #444;
+  font-size: 1.2rem;
+  margin: 0 0 8px 0;
+}
+
+.ingredientsList {
+  padding-left: 20px;
+  margin: 0 0 12px 0;
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.ingredientItem {
+  color: #555;
+  margin-bottom: 4px;
+}
+
+.small-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}

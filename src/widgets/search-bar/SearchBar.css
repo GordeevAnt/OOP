@@ -1,0 +1,48 @@
+/* Стили для контейнера компонента */
+.panel {
+  color: rgb(0, 0, 0);
+  width: 300%;
+}
+
+/* Стили для выпадающего меню */
+.react-select__menu {
+  border-radius: 10px !important;
+  margin-top: 4px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Стили для элементов списка */
+.react-select__option {
+  color: black !important;
+  padding: 8px 12px !important;
+  border: 1px solid transparent !important; /* Прозрачная граница по умолчанию */
+  border-radius: 4px !important;
+  background-color: transparent !important;
+  transition: none !important; /* Отключаем анимацию */
+}
+
+/* Стиль при наведении на элемент */
+.react-select__option:hover {
+  border-color: orange !important; /* Только оранжевая граница */
+  margin: 0 !important; /* Убираем компенсацию, если не нужно */
+}
+
+/* Стиль для выбранного элемента */
+.react-select__option--is-selected {
+  background-color: #f5f5f5 !important;
+  color: black !important;
+}
+
+/* Стили для основного контрола */
+.react-select__control {
+  border-radius: 10px !important;
+  border-color: #d9d9d9 !important;
+  min-height: 40px !important;
+  box-shadow: none !important;
+}
+
+/* Стиль при фокусе */
+.react-select__control--is-focused {
+  border-color: orange !important;
+  box-shadow: 0 0 0 1px orange !important;
+}

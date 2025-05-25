@@ -1,0 +1,54 @@
+/* Основные стили контейнера */
+.category-container {
+    margin: 0 auto;
+    margin-bottom: 40px;
+    width: 100%;
+    max-width: 800px;
+}
+
+/* Стили метки */
+.category-label {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 20px;
+    color: #333;
+    font-weight: 500;
+}
+
+/* Контейнер для кнопок */
+.category-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Базовые стили кнопок */
+.category-button {
+    padding: 10px 16px;
+    background-color: white;
+    color: black;
+    border: 1.5px solid white;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+/* Стиль при наведении */
+.category-button:hover {
+    border-color: orange;
+}
+
+/* Стиль выбранной кнопки */
+.category-button-selected {
+    background-color: orange;
+    color: white;
+    border-color: orange;
+    font-weight: 500;
+}
+
+/* Стиль активного состояния (при нажатии) */
+.category-button:active {
+    transform: scale(0.98);
+}

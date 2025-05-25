@@ -1,0 +1,57 @@
+body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: black;
+}
+
+/* Стили только для основного навбара */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f0f0f0;
+  padding: 12px 15px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+}
+  
+  /* Стили только для основного списка в навбаре */
+  .navbar > .nav-list {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 20px;
+    flex-wrap: nowrap;
+    max-width: 1200px;
+    width: 100%;
+    justify-content: flex-start;
+}
+  
+  /* Стили только для непосредственных li в основном навбаре */
+  .navbar > .nav-list > li {
+    margin: 0;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.home-icon-button {
+  margin-left: -150%;
+  margin-top: -3%;
+}
+
+.recipe-search-container {
+  margin-left: 22%;
+  width: 250px;
+  min-width: 250px;
+}
+
+.filter-container {
+  margin-left: 495%;
+}

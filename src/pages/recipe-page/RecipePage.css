@@ -1,0 +1,141 @@
+/* RecipePage.module.css или recipe-page.css */
+
+.container {
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #f0f0f0;
+    padding: 15px 20px;
+    width: 90%;
+    border-radius: 16px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.container h1 {
+    text-align: center;
+}
+ 
+.mainInfo, .todoList, .same-recipes {
+    background-color: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.mainInfo h1 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.mainInfo img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.mainInfo h4 {
+    color: #555;
+    margin: 10px 0;
+    font-weight: 500;
+}
+
+.input-portions::-webkit-outer-spin-button,
+.input-portions::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.input-portions{
+    width: 80px;
+    height: 30px;
+    border: 1px solid #e0e0e0;
+    border-radius: 30px;
+    text-align: center;
+}
+
+.increase-portions,
+.decrease-portions {
+    width: 30px;
+    height: 30px;
+    margin-left: 0.5%;
+    background-color: white;
+    color: #333;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.increase-portions:hover,
+.decrease-portions:hover{
+    border-color: orange;
+    color: orange;
+}
+
+.decrease-portions:active,
+.increase-portions:active {
+    background-color: orange;
+    color: white;
+}
+
+h3 {
+    color: #333;
+    margin: 20px 0 15px;
+    font-size: 1.4rem;
+}
+
+ul {
+    padding-left: 20px;
+    margin: 15px 0;
+}
+
+li {
+    margin-bottom: 8px;
+    color: #444;
+    line-height: 1.5;
+}
+
+.todoList p {
+    color: #444;
+    line-height: 1.6;
+    white-space: pre-line;
+}
+
+.recipe-actions {
+    margin: 15px 0;
+    display: flex;
+    gap: 10px;
+}
+  
+.recipe-actions button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.recipe-actions .edit-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+  
+.recipe-actions .delete-btn {
+    background-color: #f44336;
+    color: white;
+}
+  
+.recipe-actions button:hover {
+    opacity: 0.9;
+}

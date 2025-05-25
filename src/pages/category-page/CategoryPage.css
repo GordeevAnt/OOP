@@ -1,0 +1,52 @@
+.recipe-catalog {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 15px;
+  list-style: none;
+  padding: 0;
+  margin: 24px auto;
+  max-width: calc(3 * (300px + 15px) - 15px); /* 3 колонки + отступы */
+  width: 100%;
+  justify-content: center; /* Центрируем всю сетку */
+}
+
+.recipe-catalog-item {
+  display: flex;
+  transition: transform 0.2s ease;
+  justify-content: center;
+  max-width: 100%; /* Ограничиваем максимальную ширину элемента */
+}
+
+.recipe-catalog-item:hover {
+  transform: translateY(-5px);
+}
+
+.loading-more {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+  font-size: 1rem;
+}
+
+.no-recipes {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+  font-size: 1.2rem;
+}
+
+/* Адаптация */
+@media (max-width: 1024px) {
+  .recipe-catalog {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    max-width: calc(2 * (250px + 15px) - 15px); /* 2 колонки + отступы */
+  }
+}
+
+@media (max-width: 640px) {
+  .recipe-catalog {
+    grid-template-columns: minmax(250px, 350px); /* Одна колонка с ограничением по ширине */
+    max-width: 100%;
+    justify-content: center;
+  }
+}

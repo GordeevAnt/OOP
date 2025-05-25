@@ -1,0 +1,114 @@
+/* recipe-filter.css */
+.filter-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0; /* Убираем отступ снизу */
+}
+
+.filter-button {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    padding: 10px 16px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    z-index: 1;
+    position: relative;
+    white-space: nowrap; /* Предотвращаем перенос текста */
+}
+
+.filter-button:hover {
+    background-color: white;
+    color: #333;
+}
+
+.filter-icon {
+    transition: transform 0.3s;
+}
+
+.filter-icon.open {
+    transform: rotate(180deg);
+}
+
+.filter-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    min-width: 180px;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 150px;
+}
+
+.filter-group label {
+    font-weight: 500;
+    color: #333;
+    font-size: 14px;
+}
+
+.filter-group select {
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: white;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.reset-filters-button {
+    margin-top: 15px;
+    padding: 8px 12px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #333;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+  
+.reset-filters-button:hover {
+    background-color: #e0e0e0;
+}
+  
+.reset-filters-button:active {
+    background-color: #d0d0d0;
+}
+
+@media (max-width: 768px) {
+    .filter-dropdown {
+        position: fixed;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        gap: 10px;
+        border-radius: 8px 8px 0 0;
+        max-height: 70vh;
+        overflow-y: auto;
+    }
+    
+    .filter-group {
+        width: 100%;
+    }
+}
