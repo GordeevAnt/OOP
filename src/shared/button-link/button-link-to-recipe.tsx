@@ -5,10 +5,9 @@ import './ButtonLinkToRecipe.css'
 
 export default function ButtonLink ({text, recipe} : {text: string, recipe: RecipeType}) {
     const navigate = useNavigate();
-    const { categoryId } = useParams();
 
     const handleClick = () => {
-        navigate(`/${categoryId}/recipe/${recipe.id}`); // Добавляем categoryId в URL
+        navigate(`/${recipe.category()}/recipe/${recipe.id}`); // Добавляем categoryId в URL
     }
     return(
         <>

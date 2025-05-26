@@ -50,11 +50,11 @@ function AppContent() {
             ))}
           </Route>
           <Route path="/favorites" element={<FavoritesPage />} />
-          <Route path="/recipe/:id" element={<RecipePage />} />
-          <Route path="/edit-recipe/:id" element={<EditRecipePage />} />
-          <Route path='/:categoryId/recipe/:id' element={<RecipePage />} />
           <Route path='/newRecipe' element={<AddRecipePage />} />
           <Route path='/randomRecipe' element={<RandomRecipePage />} />
+          <Route path="/recipe/:id" element={<RecipePage />} />
+          <Route path="/edit-recipe/:id" element={<EditRecipePage />} />
+          <Route path='/:category/recipe/:id' element={<RecipePage />} />
         </Routes>
       </main>
     </Router>
