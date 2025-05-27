@@ -12,7 +12,7 @@ export default function FavoritesPage() {
   useEffect(() => {
     const favoriteRecipes = state.filter(recipe => recipe.favorite);
     setFavorites(favoriteRecipes);
-  }, []);
+  }, [state]);
 
   return (
     <div className="favorites-page">
