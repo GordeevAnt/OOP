@@ -6,7 +6,7 @@ import IngredientsAndPortions from "../../widgets/ingredients-and-portions/ingre
 import PageTitle from "../../shared/page-title";
 import SameRecipesList from "../../widgets/same-recipes-list/same-recipes-list";
 import { useRecipes } from "../../app/recipes-context";
-import NotFoundPage from "../not-found-page/not-found";
+import NotFoundPage from "../NotFoundPage";
 
 export default function RecipePage() {
     const { id } = useParams()

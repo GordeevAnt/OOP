@@ -18,12 +18,11 @@ import EditRecipePage from '../widgets/edit-recipe-form/edit-recipe-page';
 import FavoritesPage from "../pages/favorites-page/favorites-page";
 import RecipeFilter from '../widgets/recipe-filter/recipe-filter';
 import { RecipesProvider, useRecipes } from './recipes-context';
-import NotFoundPage from '../pages/not-found-page/not-found';
-
+import NotFoundPage from '../pages/NotFoundPage';
 
 function AppContent() {
   const [filteredRecipes, setFilteredRecipes] = useState<RecipeType[]>([]);
-  const [selectedRecipe, setSelectedRecipe] = useState<RecipeType | null>(null);
+  const [, setSelectedRecipe] = useState<RecipeType | null>(null);
   const { state } = useRecipes();
 
   // Обновляем отфильтрованные рецепты при изменении основного списка
