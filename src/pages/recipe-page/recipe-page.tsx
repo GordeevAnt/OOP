@@ -6,14 +6,21 @@ import IngredientsAndPortions from "../../widgets/ingredients-and-portions/ingre
 import PageTitle from "../../shared/page-title";
 import SameRecipesList from "../../widgets/same-recipes-list/same-recipes-list";
 import { useRecipes } from "../../app/recipes-context";
+import NotFoundPage from "../not-found-page/not-found";
 
 export default function RecipePage() {
-    const { id } = useParams();
-    const { state } = useRecipes();
-    const recipe = state.find(r => r.id === Number(id));
+    const { id } = useParams()
+    const { state } = useRecipes()
+    const recipe = state.find(r => r.id === Number(id))
 
     if (!recipe) {
-        return <div>Рецепт не найден</div>;
+        return (
+            <div className='container'>
+                    <div className="mainInfo">
+                        <NotFoundPage />
+                    </div>
+            </div>
+        )
     }
 
     return(

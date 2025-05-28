@@ -1,6 +1,6 @@
 import './CookingTime.css'
 
-export default function ChooseCookingTime({cookingTimeId, onTimeChange}: {
+export default function ChooseCookingTime({cookingTimeId, onTimeChange}: { // Всё точно также как и в Category.tsx
     cookingTimeId: number | null,
     onTimeChange: (cookingTimeId: number) => void
 }) {

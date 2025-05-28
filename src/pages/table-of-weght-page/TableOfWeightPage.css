@@ -1,0 +1,9 @@
+.table-container {
+    width: 50%; /* Ширина 50% от родителя */
+    max-width: 1200px; /* Фиксируем максимальную ширину (опционально) */
+    margin: 100px auto; /* Отступ сверху + автоматические отступы по бокам (центрирование) */
+    padding: 25px 40px; /* Увеличил внутренние отступы */
+    background-color: #f0f0f0;
+    border-radius: 16px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}

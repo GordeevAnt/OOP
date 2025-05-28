@@ -5,38 +5,38 @@ import { useRecipes } from '../../app/recipes-context';
 
 export default function SidePanel() {
   const { state } = useRecipes()
-  const [isOpen, setIsOpen] = useState(false);
-  const panelRef = useRef<HTMLDivElement>(null);
-  const buttonRef = useRef<HTMLButtonElement>(null);
-  const location = useLocation();
-  const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false)
+  const panelRef = useRef<HTMLDivElement>(null)
+  const buttonRef = useRef<HTMLButtonElement>(null)
+  const location = useLocation()
+  const navigate = useNavigate()
 
   useEffect(() => {
-    const savedFavorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+    const savedFavorites = JSON.parse(localStorage.getItem('favorites') || '[]')
     if (savedFavorites.length > 0) {
       state.forEach(recipe => {
         recipe.favorite = savedFavorites.includes(recipe.id);
-      });
+      })
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (panelRef.current && !panelRef.current.contains(event.target as Node) &&
           buttonRef.current && !buttonRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
+        setIsOpen(false)
       }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
+    }
+    document.addEventListener('mousedown', handleClickOutside)
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
 
   const handleItemClick = (path: string) => {
-    navigate(path);
-    setIsOpen(false);
-  };
+    navigate(path)
+    setIsOpen(false)
+  }
 
   return (
     <>
@@ -89,5 +89,5 @@ export default function SidePanel() {
         </div>
       </div>
     </>
-  );
+  )
 }

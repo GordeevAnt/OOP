@@ -10,9 +10,11 @@ export default function FavoritesPage() {
   const [favorites, setFavorites] = useState<RecipeType[]>([]);
 
   useEffect(() => {
+    // Фильтруем рецепты, оставляя только те, у которых favorite = true
     const favoriteRecipes = state.filter(recipe => recipe.favorite);
+    
     setFavorites(favoriteRecipes);
-  }, [state]);
+  }, []);
 
   return (
     <div className="favorites-page">

@@ -18,9 +18,10 @@ interface OptionType {
 export default function RecipeSearch({ recipes, onSelectRecipe }: RecipeSearchProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
+  const { categoryId } = useParams();
 
   const handleClick = (recipe: RecipeType) => {
-    navigate(`/${recipe.category() || 'all'}/recipe/${recipe.id}`);
+    navigate(`/${categoryId || 'all'}/recipe/${recipe.id}`);
   };
 
   if (!recipes || !Array.isArray(recipes)) {
@@ -80,7 +81,7 @@ export default function RecipeSearch({ recipes, onSelectRecipe }: RecipeSearchPr
             onSelectRecipe(null);
           }
         }}
-        placeholder="Поиск рецептов..."
+        placeholder="Поиск рецептов или ингредиентов..."
         noOptionsMessage={() => 'Ничего не найдено'}
         isClearable
         isSearchable

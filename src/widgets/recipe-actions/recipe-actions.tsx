@@ -166,7 +166,7 @@ export default function RecipeActions({ recipe }: RecipeActionsProps) {
       const instructions = recipe.todoList.split('\n');
       instructions.forEach(step => {
         const lines = doc.splitTextToSize(step, pageWidth - 2 * margin);
-        lines.forEach((line: string | string[]) => {
+        lines.forEach(line => {
           checkPageBreak(7);
           doc.text(line, margin + 5, yPos);
           yPos += 7;

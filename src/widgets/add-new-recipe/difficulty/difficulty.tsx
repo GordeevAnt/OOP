@@ -1,6 +1,6 @@
 import './Difficulty.css'
 
-export default function Difficulty({difficaltyId, onDifficaltyChange}: {
+export default function Difficulty({difficaltyId, onDifficaltyChange}: { // Всё точно также как и в Category.tsx
     difficaltyId: number | null,
     onDifficaltyChange: (eatingTimeId: number) => void
 }) {

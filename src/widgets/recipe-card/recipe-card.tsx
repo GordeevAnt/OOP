@@ -4,30 +4,30 @@ import ButtonLink from "../../shared/button-link/button-link-to-recipe";
 import './RecipeCard.css';
 
 export default function RecipeCard({ recipe }: { recipe: RecipeType }) {
-  const [isHovered, setIsHovered] = useState(false);
-  const hoverTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [isHovered, setIsHovered] = useState(false)
+  const hoverTimeout = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const handleMouseEnter = () => {
     hoverTimeout.current = setTimeout(() => {
-      setIsHovered(true);
-    }, 200);
-  };
+      setIsHovered(true)
+    }, 200)
+  }
 
   const handleMouseLeave = () => {
     if (hoverTimeout.current) {
-      clearTimeout(hoverTimeout.current);
-      hoverTimeout.current = null;
+      clearTimeout(hoverTimeout.current)
+      hoverTimeout.current = null
     }
-    setIsHovered(false);
-  };
+    setIsHovered(false)
+  }
 
   useEffect(() => {
     return () => {
       if (hoverTimeout.current) {
-        clearTimeout(hoverTimeout.current);
+        clearTimeout(hoverTimeout.current)
       }
-    };
-  }, []);
+    }
+  }, [])
 
 
   return (
@@ -61,5 +61,5 @@ export default function RecipeCard({ recipe }: { recipe: RecipeType }) {
         </div>
       )}
     </div>
-  );
+  )
 }

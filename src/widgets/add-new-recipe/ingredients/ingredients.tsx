@@ -1,5 +1,5 @@
-import { useRef, useState } from "react";
-import Select from 'react-select';
+import { useRef, useState } from "react"; // Импорт встроенных хуков из реакт
+import Select from 'react-select'; //
 import { IngredientType, UnitType, Units, ingredientsList } from "../../../entities/ingredints-data";
 import './Ingredients.css';
 
@@ -33,7 +33,6 @@ export default function AddIngredients({ ingredients, onIngredientsChange }: Pro
     };
 
     const handleCountChange = (tempId: number, newCount: number | string) => {
-        // Если ввод пустой, устанавливаем count в 0 (или можно null, если это допустимо в вашей логике)
         if (newCount === "") {
             onIngredientsChange(ingredients.map(ing => 
                 ing.id === tempId ? { ...ing, count: 0 } : ing
@@ -41,7 +40,6 @@ export default function AddIngredients({ ingredients, onIngredientsChange }: Pro
             return;
         }
 
-        // Проверяем, что значение - число
         const numericValue = typeof newCount === 'string' ? parseFloat(newCount) : newCount;
         
         if (isNaN(numericValue)) {
