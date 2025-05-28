@@ -2,9 +2,9 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
+  useNavigate,
 } from 'react-router-dom';
-
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { RecipeType } from '../entities/data';
 import AddRecipePage from '../pages/new-recipe-adding-page/new-recipe-adding-page';
 import { CategoryList, routes } from '../widgets/category-navi/category-navi';
@@ -23,16 +23,22 @@ import NotFoundPage from '../pages/NotFoundPage';
 
 function AppContent() {
   const [filteredRecipes, setFilteredRecipes] = useState<RecipeType[]>([]);
-  const [selectedRecipe, setSelectedRecipe] = useState<RecipeType | null>(null);
   const { state } = useRecipes();
+  const navigate = useNavigate();
 
-  // Обновляем отфильтрованные рецепты при изменении основного списка
+  const navigateToRecipe = useCallback((recipe: RecipeType | null) => {
+    if (recipe) {
+      // Перенаправляем на страницу рецепта
+      navigate(`/${recipe.category() || 'all'}/recipe/${recipe.id}`);
+    }
+  }, [navigate]);
+
   useEffect(() => {
     setFilteredRecipes(state);
   }, [state]);
 
   return (
-    <Router>
+    <>
       <header>
         <nav className='navbar'>
           <ul className='nav-list'>
@@ -41,7 +47,7 @@ function AppContent() {
               <li>
                 <SearchBar 
                   recipes={filteredRecipes}
-                  onSelectRecipe={setSelectedRecipe}
+                  onSelectRecipe={navigateToRecipe} 
                 />
               </li>
               <li>
@@ -69,14 +75,16 @@ function AppContent() {
           <Route path='*' element={<NotFoundPage />} />
         </Routes>
       </main>
-    </Router>
+    </>
   );
 }
 
 export default function App() {
   return (
-    <RecipesProvider>
-      <AppContent />
-    </RecipesProvider>
+    <Router>
+      <RecipesProvider>
+        <AppContent />
+      </RecipesProvider>
+    </Router>
   );
 }

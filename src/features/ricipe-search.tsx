@@ -1,8 +1,8 @@
 import '../widgets/search-bar/SearchBar.css';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import Select, { StylesConfig } from 'react-select';
 import { RecipeType } from '../entities/data';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 interface RecipeSearchProps {
   recipes?: RecipeType[];
@@ -19,14 +19,14 @@ export default function RecipeSearch({ recipes, onSelectRecipe }: RecipeSearchPr
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
 
-  const handleClick = (recipe: RecipeType) => {
+  const handleClick = useCallback((recipe: RecipeType) => {
     navigate(`/${recipe.category() || 'all'}/recipe/${recipe.id}`);
-  };
+    onSelectRecipe(recipe);
+  }, [navigate, onSelectRecipe]);
 
   if (!recipes || !Array.isArray(recipes)) {
     return;
   }
-
 
   // Формируем опции для Select с проверкой
   const options: OptionType[] = recipes.map((recipe) => ({
