@@ -18,6 +18,7 @@ import EditRecipePage from '../widgets/edit-recipe-form/edit-recipe-page';
 import FavoritesPage from "../pages/favorites-page/favorites-page";
 import RecipeFilter from '../widgets/recipe-filter/recipe-filter';
 import { RecipesProvider, useRecipes } from './recipes-context';
+import NotFoundPage from '../pages/NotFoundPage';
 
 
 function AppContent() {
@@ -37,8 +38,18 @@ function AppContent() {
           <ul className='nav-list'>
               <li><SidePanel /></li>
               <li><HomeIcon /></li>
-              <li><SearchBar recipes={filteredRecipes} onSelectRecipe={setSelectedRecipe}/></li>
-              <li><RecipeFilter state={state} onFilter={setFilteredRecipes}/></li>
+              <li>
+                <SearchBar 
+                  recipes={filteredRecipes}
+                  onSelectRecipe={setSelectedRecipe}
+                />
+              </li>
+              <li>
+                <RecipeFilter 
+                  state={state} 
+                  onFilter={setFilteredRecipes} 
+                />
+              </li>
           </ul>
         </nav>
       </header>
@@ -50,11 +61,12 @@ function AppContent() {
             ))}
           </Route>
           <Route path="/favorites" element={<FavoritesPage />} />
+          <Route path="/recipe/:id" element={<RecipePage />} />
+          <Route path="/edit-recipe/:id" element={<EditRecipePage />} />
+          <Route path='/:categoryId/recipe/:id' element={<RecipePage />} />
           <Route path='/newRecipe' element={<AddRecipePage />} />
           <Route path='/randomRecipe' element={<RandomRecipePage />} />
-          <Route path='/recipe/:id' element={<RecipePage />} />
-          <Route path="/edit-recipe/:id" element={<EditRecipePage />} />
-          <Route path='/:category/recipe/:id' element={<RecipePage />} />
+          <Route path='*' element={<NotFoundPage />} />
         </Routes>
       </main>
     </Router>
