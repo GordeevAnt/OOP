@@ -27,12 +27,10 @@ export const convertUnits = (value: number, from: UnitType, to: UnitType): numbe
 };
 
 export const UnitConverter = ({ ingredient }: { ingredient: IngredientType }) => {
-  const [displayValue, setDisplayValue] = useState<string>(ingredient.count.toString());
   const [currentCount, setCurrentCount] = useState<number>(ingredient.count);
   const [currentUnit, setCurrentUnit] = useState<UnitType>(ingredient.units);
 
   useEffect(() => {
-    setDisplayValue(ingredient.count.toString());
     setCurrentCount(ingredient.count);
     setCurrentUnit(ingredient.units);
   }, [ingredient]);
@@ -42,14 +40,13 @@ export const UnitConverter = ({ ingredient }: { ingredient: IngredientType }) =>
     const convertedCount = convertUnits(currentCount, currentUnit, newUnit);
     setCurrentUnit(newUnit);
     setCurrentCount(convertedCount);
-    setDisplayValue(convertedCount.toString());
   };
 
   return (
     <div className="ingredient-row">
       <span className="ingredient-name">{ingredient.name}</span>
       <label className="ingredient-value">
-        {parseFloat(displayValue).toFixed(2)}
+        {parseFloat(currentCount.toString()).toFixed(2)}
       </label>
       <select 
         value={currentUnit} 
