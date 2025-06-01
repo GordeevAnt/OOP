@@ -63,16 +63,16 @@ export default function SidePanel() {
               <Link to="/">Главная</Link>
             </li>
             <li 
-              className={location.pathname === '/newRecipe' ? 'active-item' : ''}
-              onClick={() => handleItemClick('/newRecipe')}
+              className={location.pathname === '/new-recipe' ? 'active-item' : ''}
+              onClick={() => handleItemClick('/new-recipe')}
             >
-              <Link to="/newRecipe">Добавить рецепт</Link>
+              <Link to="/new-recipe">Добавить рецепт</Link>
             </li>
             <li 
-              className={location.pathname === '/randomRecipe' ? 'active-item' : ''}
-              onClick={() => handleItemClick('/randomRecipe')}
+              className={location.pathname === '/random-recipe' ? 'active-item' : ''}
+              onClick={() => handleItemClick('/random-recipe')}
             >
-              <Link to="/randomRecipe">Случайный рецепт</Link>
+              <Link to="/random-recipe">Случайный рецепт</Link>
             </li>
             <li 
               className={location.pathname === '/favorites' ? 'active-item' : ''}

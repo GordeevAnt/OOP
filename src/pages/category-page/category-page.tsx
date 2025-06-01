@@ -1,22 +1,22 @@
 import { useState, useEffect, useCallback } from 'react';
+import { useParams } from 'react-router-dom';
 import PageTitle from "../../shared/page-title";
 import RecipeCard from "../../widgets/recipe-card/recipe-card";
 import './CategoryPage.css';
 import { useRecipes } from "../../app/recipes-context";
 import { RecipeType } from "../../entities/data";
 
-interface RecipePageProps {
-  categoryID?: number;
-}
-
 const RECIPES_PER_PAGE = 8;
 const SCROLL_THRESHOLD = 300;
 
-export default function CategoryPage({ categoryID }: RecipePageProps) {
+export default function CategoryPage() {
+  const { category } = useParams();
   const { state } = useRecipes();
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   
+  // Преобразуем строковый параметр в числовой ID
+  const categoryID = getCategoryIdFromPath(category);
   const { title, filteredRecipes } = getCategoryData(categoryID, state);
   const visibleRecipes = filteredRecipes.slice(0, page * RECIPES_PER_PAGE);
   const hasMore = visibleRecipes.length < filteredRecipes.length;
@@ -42,17 +42,11 @@ export default function CategoryPage({ categoryID }: RecipePageProps) {
   }, [handleScroll, filteredRecipes]);
 
   useEffect(() => {
-    // Сбрасываем страницу на первую при смене категории
     setPage(1);
-    
-    // Прокручиваем страницу вверх
-    window.scrollTo({
-      top: 0,
-    });
-  }, [categoryID]); // Зависимость от categoryID
+    window.scrollTo({ top: 0 });
+  }, [category]);
 
   useEffect(() => {
-    // Проверяем, нужно ли подгрузить сразу, если контента мало
     const documentHeight = document.documentElement.scrollHeight;
     const windowHeight = window.innerHeight;
     
@@ -88,22 +82,30 @@ export default function CategoryPage({ categoryID }: RecipePageProps) {
   );
 }
 
+function getCategoryIdFromPath(path: string | undefined): number | undefined {
+  switch (path) {
+    case 'snacks': return 1;
+    case 'first-courses': return 2;
+    case 'second-courses': return 3;
+    case 'drinks': return 4;
+    case 'desserts': return 5;
+    default: return undefined;
+  }
+}
+
 function getCategoryData(categoryID?: number, recipes: RecipeType[] = []) {
-  let title = "Главная";
+  let title = "Все рецепты";
   let filteredRecipes = [...recipes];
 
   if (categoryID !== undefined) {
-    if (categoryID >= 1 && categoryID <= 5) {
-      filteredRecipes = recipes.filter(recipe => recipe.categoryId === categoryID);
-    }
-
+    filteredRecipes = recipes.filter(recipe => recipe.categoryId === categoryID);
+    
     switch (categoryID) {
       case 1: title = "Закуски"; break;
       case 2: title = "Первые блюда"; break;
       case 3: title = "Вторые блюда"; break;
       case 4: title = "Напитки"; break;
       case 5: title = "Десерты"; break;
-      default: title = "Главная";
     }
   }
 

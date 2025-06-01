@@ -6,7 +6,7 @@ import ChooseCategory from "../widgets/add-new-recipe/category/category";
 import ChooseEatingTime from "../widgets/add-new-recipe/eating-time/eating-time";
 import AddIngredients from "../widgets/add-new-recipe/ingredients/ingredients";
 import AddTodoList from "../widgets/add-new-recipe/todo-list/todo-list";
-import { ingredientsList, IngredientType } from "../entities/ingredints-data";
+import { IngredientType } from "../entities/ingredints-data";
 import ImageUploader from "../widgets/add-new-recipe/image-uploader/image-uploader";
 import Difficulty from "../widgets/add-new-recipe/difficulty/difficulty";
 import ChooseCookingTime from "../widgets/add-new-recipe/cookingTime/cookingTime";
