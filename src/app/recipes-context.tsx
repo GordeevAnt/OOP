@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useCallback, useContext, useReducer } from "react";
 import { RecipeType, recipes as initialRecipes } from "../entities/data";
 import { RecipesAction, recipesReducer } from "../features/recipesReducer";
 
@@ -16,17 +16,17 @@ export function RecipesProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(recipesReducer, initialRecipes);
 
   // Вспомогательные функции для удобства
-  const addRecipe = (recipe: RecipeType) => {
+  const addRecipe = useCallback((recipe: RecipeType) => {
     dispatch({ type: "ADD_RECIPE", payload: recipe });
-  };
+  }, []);
 
-  const updateRecipe = (recipe: RecipeType) => {
+  const updateRecipe = useCallback((recipe: RecipeType) => {
     dispatch({ type: "UPDATE_RECIPE", payload: recipe });
-  };
+  }, []);
 
-  const deleteRecipe = (id: number) => {
+  const deleteRecipe = useCallback((id: number) => {
     dispatch({ type: "DELETE_RECIPE", payload: id });
-  };
+  }, []);
 
   return (
     <RecipesContext.Provider value={{ 

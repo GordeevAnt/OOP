@@ -18,10 +18,10 @@ interface OptionType {
 export default function RecipeSearch({ recipes, onSelectRecipe }: RecipeSearchProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
-  const { categoryId } = useParams();
+  const { category } = useParams();
 
   const handleClick = (recipe: RecipeType) => {
-    navigate(`/${categoryId || 'all'}/recipe/${recipe.id}`);
+    navigate(`/${category || 'all'}/recipe/${recipe.id}`);
   };
 
   if (!recipes || !Array.isArray(recipes)) {

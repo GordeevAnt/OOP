@@ -1,4 +1,5 @@
 import {
+  BrowserRouter,
   Route,
   Routes,
 } from 'react-router-dom';
@@ -24,11 +25,13 @@ function AppContent() {
             <Route index element={<CategoryPage />} />
             <Route path=":category" element={<CategoryPage />} />
           </Route>
-          <Route path=":category/recipe/:id" element={<RecipePage />} />
+          
+          <Route path="/:category/recipe/:id" element={<RecipePage />} />
           <Route path="/favorites" element={<FavoritesPage />} />
           <Route path="/edit-recipe/:id" element={<EditRecipePage />} />
           <Route path="/new-recipe" element={<AddRecipePage />} />
           <Route path="/random-recipe" element={<RandomRecipePage />} />
+          
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
@@ -38,8 +41,10 @@ function AppContent() {
 
 export default function App() {
   return (
-    <RecipesProvider>
-      <AppContent />
-    </RecipesProvider>
+    <BrowserRouter>
+      <RecipesProvider>
+        <AppContent />
+      </RecipesProvider>
+    </BrowserRouter>
   );
 }

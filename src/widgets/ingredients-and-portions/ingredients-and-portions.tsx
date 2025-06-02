@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { RecipeType } from "../../entities/data";
 import { convertUnits, UnitConverter } from "./units-convector/units-converter";
 import { ingredientsList, UnitType } from "../../entities/ingredints-data";
@@ -9,25 +9,17 @@ export default function IngredientsAndPortions ({recipe} : {recipe: RecipeType})
     const [showAlert, setShowAlert] = useState(true);
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const calculateCalories = () => {
-        return recipe.ingredients.reduce((total, ingredient) => {   
-            const startCount = ingredientsList.find(ing => ing.id === ingredient.id)?.count || 0;
-            const startUnit = ingredientsList.find(ing => ing.id === ingredient.id)?.units || 'гр'; // Значение по умолчанию
-            
-            // Проверяем, что startUnit валиден (на случай, если в данных ошибка)
-            const safeStartUnit: UnitType = ['мл', 'л', 'гр', 'кг'].includes(startUnit) 
-                ? startUnit as UnitType 
-                : 'гр';
+    const calculateCalories = useMemo(() => {
+    return recipe.ingredients.reduce((total, ingredient) => {   
+        const startCount = ingredientsList.find(ing => ing.id === ingredient.id)?.count || 0;
+        const startUnit = ingredientsList.find(ing => ing.id === ingredient.id)?.units || 'гр';
+        const safeStartUnit: UnitType = ['мл', 'л', 'гр', 'кг'].includes(startUnit) ? startUnit as UnitType : 'гр';
+        const convertedValue = convertUnits(ingredient.count, ingredient.units, safeStartUnit);
+        return total + (ingredient.calories * (convertedValue / startCount));
+    }, 0);
+    }, [recipe.ingredients]);
 
-            const convertedValue = convertUnits(
-                ingredient.count,
-                ingredient.units,
-                safeStartUnit
-            );
-        
-            return total + (ingredient.calories * (convertedValue / startCount));
-        }, 0);
-    };
+    const calories = calculateCalories * portions;
 
     useEffect(() => {
         setInputValue(portions.toString());
@@ -117,7 +109,7 @@ export default function IngredientsAndPortions ({recipe} : {recipe: RecipeType})
                     </li>
                 ))}
             </ul>
-            <label className="recipe_calories">Количество калорий: {calculateCalories() * portions}</label>
+            <label className="recipe_calories">Количество калорий: {calories}</label>
         </>
     )
 }

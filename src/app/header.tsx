@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { RecipeType } from "../entities/data";
 import { HomeIcon } from "../widgets/home-icon/home-icon";
@@ -8,42 +8,36 @@ import SidePanel from "../widgets/sidebar/side-panel";
 import { useRecipes } from "./recipes-context";
 
 export function Header() {
-  const [filteredRecipes, setFilteredRecipes] = useState<RecipeType[]>([]);
   const { state } = useRecipes();
   const navigate = useNavigate();
+  const [filteredRecipes, setFilteredRecipes] = useState<RecipeType[]>(state);
 
   const navigateToRecipe = useCallback((recipe: RecipeType | null) => {
-    if (recipe) {
-      // Перенаправляем на страницу рецепта
-      navigate(`/${recipe.category() || 'all'}/recipe/${recipe.id}`);
-    }
+    recipe && navigate(`/${recipe.category() || 'all'}/recipe/${recipe.id}`);
   }, [navigate]);
 
-  useEffect(() => {
-    setFilteredRecipes(state);
-  }, [state]);
+  const memoizedFilteredRecipes = useMemo(() => filteredRecipes, [filteredRecipes]);
 
   return (
-    <>
-      <header>
-        <nav className='navbar'>
-          <ul className='nav-list'>
-              <li><SidePanel /></li>
-              <li><HomeIcon /></li>
-              <li>
-                <SearchBar 
-                  recipes={filteredRecipes}
-                  onSelectRecipe={navigateToRecipe} 
-                />
-              </li>
-              <li>
-                <RecipeFilter 
-                  state={state} 
-                  onFilter={setFilteredRecipes} 
-                />
-              </li>
-          </ul>
-        </nav>
-      </header>
-    </>
-)}
+    <header>
+      <nav className='navbar'>
+        <ul className='nav-list'>
+          <li><SidePanel /></li>
+          <li><HomeIcon /></li>
+          <li>
+            <SearchBar 
+              recipes={memoizedFilteredRecipes}
+              onSelectRecipe={navigateToRecipe} 
+            />
+          </li>
+          <li>
+            <RecipeFilter 
+              state={state} 
+              onFilter={setFilteredRecipes} 
+            />
+          </li>
+        </ul>
+      </nav>
+    </header>
+  );
+}
