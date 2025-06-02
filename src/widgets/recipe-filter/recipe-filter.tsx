@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+// recipe-filter.tsx
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { RecipeType } from '../../entities/data';
 import './recipe-filter.css';
 
@@ -8,7 +9,7 @@ interface RecipeFilterProps {
 }
 
 export default function RecipeFilter({ state, onFilter }: RecipeFilterProps) {
-  const [filters, setFilters] = useState({
+  const [filterParams, setFilterParams] = useState({
     difficulty: 'all',
     cookingTime: 'all',
     ingredientCount: 'all',
@@ -18,51 +19,41 @@ export default function RecipeFilter({ state, onFilter }: RecipeFilterProps) {
   const [isOpen, setIsOpen] = useState(false);
   const filterRef = useRef<HTMLDivElement>(null);
 
-  // Мемоизация функции фильтрации
-  const applyFilters = useCallback(() => {
-    if (!state || !Array.isArray(state)) {
-      onFilter([]);
-      return;
-    }
+  // Мемоизированная фильтрация рецептов
+  const filteredRecipes = useMemo(() => {
+    if (!state || !Array.isArray(state)) return [];
 
-    const filtered = state.filter(recipe => {
+    return state.filter(recipe => {
       return (
-        (filters.difficulty === 'all' || 
-          (filters.difficulty === 'easy' && recipe.difficulty() === 'Легко') ||
-          (filters.difficulty === 'medium' && recipe.difficulty() === 'Средне') ||
-          (filters.difficulty === 'hard' && recipe.difficulty() === 'Сложно')) &&
-        (filters.cookingTime === 'all' ||
-          (filters.cookingTime === 'fast' && recipe.cookingTimeId === 1) ||
-          (filters.cookingTime === 'long' && recipe.cookingTimeId === 2)) &&
-        (filters.ingredientCount === 'all' ||
-          (filters.ingredientCount === 'few' && recipe.ingredients.length <= 3) ||
-          (filters.ingredientCount === 'medium' && recipe.ingredients.length > 3 && recipe.ingredients.length <= 5) ||
-          (filters.ingredientCount === 'many' && recipe.ingredients.length > 5)) &&
-        (filters.category === 'all' ||
-          (filters.category === 'appetizer' && recipe.categoryId === 1) ||
-          (filters.category === 'main' && recipe.categoryId === 2) ||
-          (filters.category === 'dessert' && recipe.categoryId === 5) ||
-          (filters.category === 'drink' && recipe.categoryId === 4)) &&
-        (filters.eatingTime === 'all' ||
-          (filters.eatingTime === 'breakfast' && recipe.eatingTimeId === 1) ||
-          (filters.eatingTime === 'lunch' && recipe.eatingTimeId === 2) ||
-          (filters.eatingTime === 'dinner' && recipe.eatingTimeId === 4) ||
-          (filters.eatingTime === 'snack' && recipe.eatingTimeId === 3))
+        (filterParams.difficulty === 'all' || 
+          (filterParams.difficulty === 'easy' && recipe.difficulty() === 'Легко') ||
+          (filterParams.difficulty === 'medium' && recipe.difficulty() === 'Средне') ||
+          (filterParams.difficulty === 'hard' && recipe.difficulty() === 'Сложно')) &&
+        (filterParams.cookingTime === 'all' ||
+          (filterParams.cookingTime === 'fast' && recipe.cookingTimeId === 1) ||
+          (filterParams.cookingTime === 'long' && recipe.cookingTimeId === 2)) &&
+        (filterParams.ingredientCount === 'all' ||
+          (filterParams.ingredientCount === 'few' && recipe.ingredients.length <= 3) ||
+          (filterParams.ingredientCount === 'medium' && recipe.ingredients.length > 3 && recipe.ingredients.length <= 5) ||
+          (filterParams.ingredientCount === 'many' && recipe.ingredients.length > 5)) &&
+        (filterParams.category === 'all' ||
+          (filterParams.category === 'appetizer' && recipe.categoryId === 1) ||
+          (filterParams.category === 'main' && recipe.categoryId === 2) ||
+          (filterParams.category === 'dessert' && recipe.categoryId === 5) ||
+          (filterParams.category === 'drink' && recipe.categoryId === 4)) &&
+        (filterParams.eatingTime === 'all' ||
+          (filterParams.eatingTime === 'breakfast' && recipe.eatingTimeId === 1) ||
+          (filterParams.eatingTime === 'lunch' && recipe.eatingTimeId === 2) ||
+          (filterParams.eatingTime === 'dinner' && recipe.eatingTimeId === 4) ||
+          (filterParams.eatingTime === 'snack' && recipe.eatingTimeId === 3))
       );
     });
+  }, [state, filterParams]);
 
-    onFilter(filtered);
-  }, [state, filters, onFilter]);
-
-  // Обработчик изменения фильтров
-  const handleFilterChange = useCallback((filterName: keyof typeof filters, value: string) => {
-    setFilters(prev => ({ ...prev, [filterName]: value }));
-  }, []);
-
-  // Эффект для применения фильтров при их изменении
+  // При изменении фильтрованных рецептов вызываем onFilter
   useEffect(() => {
-    applyFilters();
-  }, [applyFilters]);
+    onFilter(filteredRecipes);
+  }, [filteredRecipes, onFilter]);
 
   // Обработчик клика вне компонента
   useEffect(() => {
@@ -76,9 +67,12 @@ export default function RecipeFilter({ state, onFilter }: RecipeFilterProps) {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isOpen]);
 
-  // Сброс фильтров
+  const handleFilterChange = useCallback((filterName: keyof typeof filterParams, value: string) => {
+    setFilterParams(prev => ({ ...prev, [filterName]: value }));
+  }, []);
+
   const resetFilters = useCallback(() => {
-    setFilters({
+    setFilterParams({
       difficulty: 'all',
       cookingTime: 'all',
       ingredientCount: 'all',
@@ -146,9 +140,9 @@ export default function RecipeFilter({ state, onFilter }: RecipeFilterProps) {
             <div key={filterGroup.name} className="filter-group">
               <label>{filterGroup.label}</label>
               <select 
-                value={filters[filterGroup.name as keyof typeof filters]}
+                value={filterParams[filterGroup.name as keyof typeof filterParams]}
                 onChange={(e) => handleFilterChange(
-                  filterGroup.name as keyof typeof filters, 
+                  filterGroup.name as keyof typeof filterParams, 
                   e.target.value
                 )}
               >

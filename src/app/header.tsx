@@ -1,4 +1,5 @@
-import { useCallback, useState, useMemo } from "react";
+// header.tsx
+import { useCallback, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { RecipeType } from "../entities/data";
 import { HomeIcon } from "../widgets/home-icon/home-icon";
@@ -10,13 +11,15 @@ import { useRecipes } from "./recipes-context";
 export function Header() {
   const { state } = useRecipes();
   const navigate = useNavigate();
-  const [filteredRecipes, setFilteredRecipes] = useState<RecipeType[]>(state);
+  const [filteredRecipes, setFilteredRecipes] = useState<RecipeType[]>(state || []);
 
   const navigateToRecipe = useCallback((recipe: RecipeType | null) => {
     recipe && navigate(`/${recipe.category() || 'all'}/recipe/${recipe.id}`);
   }, [navigate]);
 
-  const memoizedFilteredRecipes = useMemo(() => filteredRecipes, [filteredRecipes]);
+  const handleFilter = useCallback((filtered: RecipeType[]) => {
+    setFilteredRecipes(filtered);
+  }, []);
 
   return (
     <header>
@@ -26,14 +29,14 @@ export function Header() {
           <li><HomeIcon /></li>
           <li>
             <SearchBar 
-              recipes={memoizedFilteredRecipes}
+              recipes={filteredRecipes}
               onSelectRecipe={navigateToRecipe} 
             />
           </li>
           <li>
             <RecipeFilter 
               state={state} 
-              onFilter={setFilteredRecipes} 
+              onFilter={handleFilter} 
             />
           </li>
         </ul>

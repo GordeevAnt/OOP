@@ -15,7 +15,6 @@ const RecipesContext = createContext<RecipesContextType | undefined>(undefined);
 export function RecipesProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(recipesReducer, initialRecipes);
 
-  // Вспомогательные функции для удобства
   const addRecipe = useCallback((recipe: RecipeType) => {
     dispatch({ type: "ADD_RECIPE", payload: recipe });
   }, []);
