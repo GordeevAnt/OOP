@@ -9,9 +9,9 @@ import { useRecipes } from "../../app/recipes-context";
 import NotFoundPage from "../NotFoundPage";
 
 export default function RecipePage() {
-    const { id } = useParams()
+    const { category, id } = useParams()
     const { state } = useRecipes()
-    const recipe = state.find(r => r.id === Number(id))
+    const recipe = state.find(r => (r.id === Number(id)) && (r.category() === category?.toString()))
 
     if (!recipe) {
         return (

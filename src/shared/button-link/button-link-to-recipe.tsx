@@ -7,16 +7,16 @@ export default function ButtonLink ({text, recipe} : {text: string, recipe: Reci
     const navigate = useNavigate();
 
     const categoryUrl = [
-        {id: 1, name: 'snacks'},
-        {id: 2, name: 'first-courses'},
-        {id: 3, name: 'second-courses'},
-        {id: 4, name: 'drinks'},
-        {id: 5, name: 'desserts'},
-        {id: 6, name: 'other'},
+        {id: 1, name: 'Закуска'},
+        {id: 2, name: 'Первое блюдо'},
+        {id: 3, name: 'Второе блюдо'},
+        {id: 4, name: 'Напиток'},
+        {id: 5, name: 'Десерт'},
+        {id: 6, name: 'Другое'},
     ]
 
     const handleClick = () => {
-        navigate(`/${categoryUrl[recipe.categoryId - 1].name}/recipe/${recipe.id}`); // Добавляем categoryId в URL
+        navigate(`/${categoryUrl[recipe.categoryId - 1].name}/recipe/${recipe.id}`); // Добавляем category в URL
     }
     return(
         <>

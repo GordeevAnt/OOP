@@ -1,5 +1,7 @@
-import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import './CategoryNavi.css';
+import CategoryPage from "../../pages/category-page/category-page";
+import NotFoundPage from "../../pages/NotFoundPage";
 
 export const categories = [
   { path: '', name: 'Все рецепты', id: 'all' },
@@ -15,24 +17,28 @@ export function CategoryList() {
   const navigate = useNavigate();
   const currentPath = location.pathname.split('/')[1] || '';
 
-  return (
-    <div className='category-nav-container'>
-      <ul className='category-nav-list'>
-        {categories.map((category) => (
-          <li 
-            key={category.path || 'all'}
-            className={`category-nav-item ${
-              currentPath === category.path ? 'active' : ''
-            }`}
-            onClick={() => navigate(`/${category.path}`)}
-          >
-            <Link to={`/${category.path}`} className="category-nav-link">
-              {category.name}
-            </Link>
-          </li>
-        ))}
-      </ul>
-      <Outlet />
-    </div>
-  );
+  if(!categories.some(c => c.path === currentPath))
+    return <NotFoundPage />
+  else {
+    return (
+      <div className='category-nav-container'>
+        <ul className='category-nav-list'>
+          {categories.map((category) => (
+            <li 
+              key={category.path || 'all'}
+              className={`category-nav-item ${
+                currentPath === category.path ? 'active' : ''
+              }`}
+              onClick={() => navigate(`/${category.path}`)}
+            >
+              <Link to={`/${category.path}`} className="category-nav-link">
+                {category.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <CategoryPage />
+      </div>
+    );
+  }
 }
