@@ -22,8 +22,7 @@ function AppContent() {
       <main>
         <Routes>
           <Route path="/" element={<CategoryList />}>
-            <Route index element={<CategoryPage />} />
-            <Route path=":category" element={<CategoryPage />} />
+            <Route path=":category?" element={<CategoryPage />} />
           </Route>
           
           <Route path="/:category/recipe/:id" element={<RecipePage />} />
