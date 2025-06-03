@@ -1,5 +1,4 @@
-// header.tsx
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { RecipeType } from "../entities/data";
 import { HomeIcon } from "../widgets/home-icon/home-icon";

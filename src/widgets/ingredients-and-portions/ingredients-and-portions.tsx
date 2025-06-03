@@ -30,7 +30,7 @@ export default function IngredientsAndPortions ({recipe} : {recipe: RecipeType})
         if (newValue > 1000 && showAlert) {
             alert("Серьёзно? Ты собираешься накормить целую армию?");
         }
-        setPortions(Math.min(newValue, 1000));
+        setPortions(1000);
     };
 
     const handleDecreasePortions = () => {

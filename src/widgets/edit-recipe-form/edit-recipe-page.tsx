@@ -15,7 +15,7 @@ export default function EditRecipePage() {
     if (index !== -1) {
       state[index] = updatedRecipe;
       alert(`Рецепт "${updatedRecipe.name}" успешно изменен!`);
-      navigate(`/recipe/${recipeId}`, { replace: true });
+      navigate(`/${recipe?.category()}/recipe/${recipeId}`, { replace: true });
     }
   };
 
