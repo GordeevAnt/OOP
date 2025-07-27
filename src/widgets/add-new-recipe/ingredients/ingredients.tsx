@@ -10,7 +10,7 @@ type Props = {
 
 export default function AddIngredients({ ingredients, onIngredientsChange }: Props) {
     const [selectedIngredient, setSelectedIngredient] = useState<IngredientType | null>(null);
-    const [selectedUnit, setSelectedUnit] = useState<UnitType>('гр');
+    const [selectedUnit,] = useState<UnitType>('гр');
     const inputRefs = useRef<{[key: number]: HTMLInputElement | null}>({});
 
     const handleAddIngredient = () => {
